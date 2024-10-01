@@ -1,0 +1,159 @@
+@font-face {
+    font-family: 'Bungee';
+    src: url('../fonts/Bungee-Regular.woff2') format('woff2'),
+         url('../fonts/Bungee-Regular.woff') format('woff'),
+         url('../fonts/Bungee-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+:root {
+    --primary-color: #6bd1a8;
+    --secondary-color: #ffffff;
+    --background-color: #ebeae9;
+    --surface-color: #ef8354;
+
+    --on-primary-color: #121212;
+    --on-secondary-color: #121212;
+    --on-background-color: #121212;
+    --on-surface-color: #121212;
+}
+* {
+	padding: 0;
+	margin: 0;
+	border: none;
+}
+body {
+    background-color: var(--background-color);
+    font-family: 'Bungee', fantasy;
+    font-variant: small-caps;
+    font-size: 1.25rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    -webkit-text-stroke: 0.0625rem var(--on-background-color);
+	text-shadow: 0.125rem 0.125rem 0 var(--on-background-color);
+    color: var(--surface-color);
+}
+h1 {
+	text-align: center;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+h3 {
+    font-size: 2rem;
+}
+h4 {
+    font-size: 1.75rem;
+}
+h5 {
+    font-size: 1.5rem;
+}
+h6 {
+    font-size: 1.25rem;
+}
+p {
+    color: var(--on-background-color);
+}
+header,
+main,
+footer {
+    padding-inline: 5%;
+}
+header {
+    padding-block: 1.5rem;
+    align-items: center;
+}
+#manage-section {
+    padding-block: 1.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+form {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+input[type=text] {
+    font-size: inherit;
+    font-family: inherit;
+    font-variant: inherit;
+    color: var(--on-surface-color);
+    background-color: var(--secondary-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    border: solid 0.125rem var(--on-background-color);
+}
+input[type=submit],
+input[type=button],
+button {
+    font-size: inherit;
+    font-family: inherit;
+    font-variant: inherit;
+    color: var(--on-surface-color);
+    background-color: var(--surface-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    border: solid 0.125rem var(--on-background-color);
+    box-shadow: 0.25rem 0.25rem var(--on-background-color);
+
+    transition: transform 50ms, box-shadow 50ms;
+}
+input[type=submit]:active,
+input[type=button]:active,
+button:active {
+    transform: translate(0.125rem, 0.125rem);
+    box-shadow: 0.125rem 0.125rem var(--on-background-color);
+}
+#create-task-button {
+    color: var(--on-secondary-color);
+    background-color: var(--secondary-color);
+}
+#tasks-section,
+#tasklist-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: left;
+    align-items: stretch;
+    gap: 1.5rem;
+}
+article.task {
+    padding: 1rem;
+    background-color: var(--secondary-color);
+    border-radius: 0.5rem;
+    border: solid 0.125rem var(--on-background-color);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+article.task p {
+    text-align: justify;
+    overflow-wrap: anywhere;
+}
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+footer {
+    text-align: center;
+    padding-block: 2rem;
+}
