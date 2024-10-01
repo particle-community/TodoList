@@ -1,9 +1,12 @@
 # TodoList
 
 ## Description
-This is a simple single-page Todo List using HTML, CSS & JavaScript.
+This is a simple single-page TODO list project using HTML, CSS & JavaScript.
 
 ## Features
-- Adding, deleting and marking tasks
+- Add, delete and mark tasks
 - Local storage support
 - Retro-style interface
+
+## Planned functions
+- Adaptation for mobile devices
