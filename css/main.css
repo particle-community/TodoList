@@ -7,65 +7,56 @@
     font-style: normal;
 }
 :root {
-    --primary-color: #6bd1a8;
-    --secondary-color: #ffffff;
-    --background-color: #ebeae9;
-    --surface-color: #ef8354;
+    --primary-color: #ff8906;
+    --secondary-color: #f25f4c;
+    --tetriary-color: #e53170;
 
-    --on-primary-color: #121212;
-    --on-secondary-color: #121212;
-    --on-background-color: #121212;
-    --on-surface-color: #121212;
+    --background-color: #eeeeee;
+    --card-background-color: #fffffe;
+    --stroke-color: #0f0e17;
+    --headline-color: #e53170;
+    --paragraph-color: #0f0e17;
+    --disabled-color: #808080;
 }
 * {
 	padding: 0;
 	margin: 0;
 	border: none;
+    box-sizing: border-box;
 }
 body {
     background-color: var(--background-color);
     font-family: 'Bungee', fantasy;
     font-variant: small-caps;
     font-size: 1.25rem;
+    padding-inline: 5vw;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    -webkit-text-stroke: 0.0625rem var(--on-background-color);
-	text-shadow: 0.125rem 0.125rem 0 var(--on-background-color);
-    color: var(--surface-color);
+h1, h2, h3, h4, h5, h6 {
+    -webkit-text-stroke: 1px var(--stroke-color);
+	text-shadow: 3px 3px 0 var(--stroke-color);
+    color: var(--headline-color);
 }
 h1 {
 	text-align: center;
-    font-size: 3rem;
-    color: var(--primary-color);
+    font-size: 3.5em;
 }
 h2 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
+    font-size: 2.5em;
 }
 h3 {
-    font-size: 2rem;
+    font-size: 2em;
 }
 h4 {
-    font-size: 1.75rem;
+    font-size: 1.75em;
 }
 h5 {
-    font-size: 1.5rem;
+    font-size: 1.5em;
 }
 h6 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
 }
 p {
-    color: var(--on-background-color);
-}
-header,
-main,
-footer {
-    padding-inline: 5%;
+    color: var(--paragraph-color);
 }
 header {
     padding-block: 1.5rem;
@@ -90,11 +81,11 @@ input[type=text] {
     font-size: inherit;
     font-family: inherit;
     font-variant: inherit;
-    color: var(--on-surface-color);
-    background-color: var(--secondary-color);
+    color: var(--paragraph-color);
+    background-color: var(--card-background-color);
     padding: 0.75rem 1rem;
-    border-radius: 0.25rem;
-    border: solid 0.125rem var(--on-background-color);
+    border-radius: 6px;
+    border: solid 2px var(--stroke-color);
 }
 input[type=submit],
 input[type=button],
@@ -102,12 +93,13 @@ button {
     font-size: inherit;
     font-family: inherit;
     font-variant: inherit;
-    color: var(--on-surface-color);
-    background-color: var(--surface-color);
-    padding: 0.75rem 1rem;
-    border-radius: 0.25rem;
-    border: solid 0.125rem var(--on-background-color);
-    box-shadow: 0.25rem 0.25rem var(--on-background-color);
+    color: var(--paragraph-color);
+    background-color: var(--primary-color);
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: solid 2px var(--stroke-color);
+    box-shadow: 4px 4px var(--stroke-color);
+    cursor: pointer;
 
     transition: transform 50ms, box-shadow 50ms;
 }
@@ -115,26 +107,32 @@ input[type=submit]:active,
 input[type=button]:active,
 button:active {
     transform: translate(0.125rem, 0.125rem);
-    box-shadow: 0.125rem 0.125rem var(--on-background-color);
+    box-shadow: 1px 1px var(--stroke-color);
 }
 #create-task-button {
-    color: var(--on-secondary-color);
+    background-color: var(--card-background-color);
+}
+.delete-task-button {
     background-color: var(--secondary-color);
+}
+.delete-task-button img {
+    display: block;
+    height: 1em;
+    aspect-ratio: 1;
 }
 #tasks-section,
 #tasklist-section {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
     justify-content: left;
     align-items: stretch;
     gap: 1.5rem;
 }
 article.task {
     padding: 1rem;
-    background-color: var(--secondary-color);
-    border-radius: 0.5rem;
-    border: solid 0.125rem var(--on-background-color);
+    background-color: var(--card-background-color);
+    border-radius: 12px;
+    border: solid 2px var(--stroke-color);
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

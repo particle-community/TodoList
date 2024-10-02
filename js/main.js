@@ -1,26 +1,24 @@
 let tasks = [];
 
+// TODO: separate render methods from Task
 class Task {
     constructor(description, isCompleted = false) {
         this.description = description;
         this.isCompleted = isCompleted;
     }
 
-    togleCompletion() {
-        this.isCompleted = !this.isCompleted;
-    }
-
     render() {
-        const elem = document.createElement('article');
-        elem.classList.add('task');
+        const taskArticle = document.createElement('article');
+        this.#updateArticleStyle(taskArticle);
+        taskArticle.classList.add('task');
 
         const descriptionParagraph = this.#createDescriptionParagraph();
-        elem.appendChild(descriptionParagraph);
+        taskArticle.appendChild(descriptionParagraph);
 
-        const buttonContainer = this.#createButtonContainer(descriptionParagraph);
-        elem.appendChild(buttonContainer);
+        const buttonContainer = this.#createButtonContainer(taskArticle, descriptionParagraph);
+        taskArticle.appendChild(buttonContainer);
 
-        return elem;
+        return taskArticle;
     }
 
     #createDescriptionParagraph() {
@@ -32,14 +30,18 @@ class Task {
 
     #updateDescriptionStyle(descriptionParagraph) {
         descriptionParagraph.style.textDecoration = this.isCompleted ? 'line-through' : 'none';
-        descriptionParagraph.style.color = this.isCompleted ? 'gray' : getPropertyValue('--on-secondary-color');
+        descriptionParagraph.style.color = this.isCompleted ? getPropertyValue('--disabled-color') : getPropertyValue('--paragraph-color');
     }
 
-    #createButtonContainer(descriptionParagraph) {
+    #updateArticleStyle(article) {
+        article.style.borderColor = this.isCompleted ? getPropertyValue('--disabled-color') : getPropertyValue('--paragraph-color');
+    }
+
+    #createButtonContainer(article, descriptionParagraph) {
         const buttonContainer = document.createElement('div');
         buttonContainer.classList.add('button-container');
 
-        const completeButton = this.#createCompleteButton(descriptionParagraph);
+        const completeButton = this.#createCompleteButton(article, descriptionParagraph);
         buttonContainer.appendChild(completeButton);
 
         const deleteButton = this.#createDeleteButton();
@@ -48,14 +50,15 @@ class Task {
         return buttonContainer;
     }
 
-    #createCompleteButton(descriptionParagraph) {
+    #createCompleteButton(article, descriptionParagraph) {
         const completeButton = document.createElement('button');
         completeButton.textContent = this.isCompleted ? "Undo" : "Complete";
         completeButton.classList.add('complete-task-button');
 
         completeButton.onclick = () => {
-            this.togleCompletion();
+            this.isCompleted = !this.isCompleted;
             this.#updateDescriptionStyle(descriptionParagraph);
+            this.#updateArticleStyle(article);
             completeButton.textContent = this.isCompleted ? "Undo" : "Complete";
             saveTasks();
         };
@@ -65,8 +68,12 @@ class Task {
 
     #createDeleteButton() {
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = "Delete";
         deleteButton.classList.add('delete-task-button');
+
+        let deleteIcon = document.createElement('img');
+        deleteIcon.src = 'icons/delete.svg';
+        deleteIcon.alt = 'Delete';
+        deleteButton.appendChild(deleteIcon);
 
         deleteButton.onclick = () => {
             removeTask(this);
