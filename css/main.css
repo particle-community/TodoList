@@ -14,8 +14,8 @@
     --background-color: #eeeeee;
     --card-background-color: #fffffe;
     --stroke-color: #0f0e17;
-    --headline-color: #e53170;
-    --paragraph-color: #0f0e17;
+    --headline-color: var(--tetriary-color);
+    --paragraph-color: var(--stroke-color);
     --disabled-color: #808080;
 }
 * {
@@ -32,8 +32,8 @@ body {
     padding-inline: 5vw;
 }
 h1, h2, h3, h4, h5, h6 {
-    -webkit-text-stroke: 1px var(--stroke-color);
-	text-shadow: 3px 3px 0 var(--stroke-color);
+    -webkit-text-stroke: 0.0625rem var(--stroke-color);
+	text-shadow: 0.1875rem 0.1875rem 0 var(--stroke-color);
     color: var(--headline-color);
 }
 h1 {
@@ -62,96 +62,137 @@ header {
     padding-block: 1.5rem;
     align-items: center;
 }
-#manage-section {
-    padding-block: 1.5rem;
+main {
     display: flex;
+    flex-direction: column;
     flex-wrap: nowrap;
+    gap: 1.5rem;
+}
+main #manage-section form {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 1rem;
 }
-form {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-input[type=text] {
+main #manage-section form input[type=text] {
     font-size: inherit;
     font-family: inherit;
     font-variant: inherit;
     color: var(--paragraph-color);
     background-color: var(--card-background-color);
     padding: 0.75rem 1rem;
-    border-radius: 6px;
-    border: solid 2px var(--stroke-color);
+    border-radius: 0.375rem;
+    border: solid 0.125rem var(--stroke-color);
 }
-input[type=submit],
-input[type=button],
-button {
+main #manage-section form input[type=submit],
+main #manage-section form input[type=button],
+main button {
     font-size: inherit;
     font-family: inherit;
     font-variant: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--paragraph-color);
     background-color: var(--primary-color);
     padding: 0.75rem;
-    border-radius: 6px;
-    border: solid 2px var(--stroke-color);
-    box-shadow: 4px 4px var(--stroke-color);
+    border-radius: 0.375rem;
+    border: solid 0.125rem var(--stroke-color);
+    box-shadow: 0.25rem 0.25rem var(--stroke-color);
     cursor: pointer;
 
     transition: transform 50ms, box-shadow 50ms;
 }
-input[type=submit]:active,
-input[type=button]:active,
-button:active {
+main #manage-section form input[type=submit]:active,
+main #manage-section form input[type=button]:active,
+main button:active {
     transform: translate(0.125rem, 0.125rem);
-    box-shadow: 1px 1px var(--stroke-color);
+    box-shadow: 0.0625rem 0.0625rem var(--stroke-color);
 }
-#create-task-button {
+main #manage-section form #create-task-button {
     background-color: var(--card-background-color);
 }
-.delete-task-button {
-    background-color: var(--secondary-color);
-}
-.delete-task-button img {
-    display: block;
-    height: 1em;
-    aspect-ratio: 1;
-}
-#tasks-section,
-#tasklist-section {
+main #tasks-section,
+main #tasks-section #tasklist-section {
     display: flex;
     flex-direction: column;
-    justify-content: left;
     align-items: stretch;
     gap: 1.5rem;
 }
-article.task {
+main #tasks-section #tasklist-section .task {
     padding: 1rem;
     background-color: var(--card-background-color);
-    border-radius: 12px;
-    border: solid 2px var(--stroke-color);
+    border-radius: 0.75rem;
+    border: solid 0.125rem var(--stroke-color);
     display: flex;
-    flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
 }
-article.task p {
+main #tasks-section #tasklist-section .task p {
     text-align: justify;
     overflow-wrap: anywhere;
 }
-.button-container {
+main #tasks-section #tasklist-section .task .button-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
 }
+main #tasks-section #tasklist-section .task .button-container .delete-task-button {
+    background-color: var(--secondary-color);
+}
+main #tasks-section #tasklist-section .task .button-container .delete-task-button img {
+    pointer-events: none;
+    display: block;
+    height: 1em;
+    aspect-ratio: 1;
+}
 footer {
     text-align: center;
     padding-block: 2rem;
+}
+@media (max-width: 786px) {
+    body {
+        font-size: 1rem;
+        padding-inline: 3vw;
+    }
+    main #manage-section {
+        align-items: stretch;
+    }
+    main #manage-section form {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    main #manage-section form input[type=submit],
+    main #manage-section form input[type=button],
+    main button {
+        padding-block: 0.5rem;
+    }
+    main #manage-section form input[type=submit],
+    main #manage-section form input[type=button] {
+        width: 50%;
+    }
+    main #manage-section form input[type=text] {
+        width: 100%;
+    }
+    main #tasks-section,
+    main #tasks-section #tasklist-section {
+        gap: 0.75rem;
+    }
+    main #tasks-section #tasklist-section .task {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+    main #tasks-section #tasklist-section .task .button-container .complete-task-button {
+        flex: 3;
+    }
+    main #tasks-section #tasklist-section .task .button-container .delete-task-button {
+        flex: 1;
+    }
 }
